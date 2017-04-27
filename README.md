@@ -1,5 +1,5 @@
-# openshift-lab01-hyper-converged
-Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin 1.5.0 + Gluster for CentOS Atomic Host
+# Deployment OpenShift Origin v1.5.0 based hyper-converged infrustructure tutorial
+Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin v1.5.0 + Gluster for CentOS Atomic Host
 
 ## Materials are used to prepare this tutorial:
 - [OpenShift Origin Advanced Installation](https://docs.openshift.org/latest/install_config/install/advanced_install.html)
