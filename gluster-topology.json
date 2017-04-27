@@ -1,0 +1,69 @@
+{
+    "clusters": [{
+        "nodes": [{
+                "node": {
+                    "hostnames": {
+                        "manage": [
+                            "node-1-01.openshift150.amsokol.me"
+                        ],
+                        "storage": [
+                            "192.168.150.101"
+                        ]
+                    },
+                    "zone": 1
+                },
+                "devices": [
+                    "/dev/vdc"
+                ]
+            },
+            {
+                "node": {
+                    "hostnames": {
+                        "manage": [
+                            "node-1-02.openshift150.amsokol.me"
+                        ],
+                        "storage": [
+                            "192.168.150.102"
+                        ]
+                    },
+                    "zone": 1
+                },
+                "devices": [
+                    "/dev/vdc"
+                ]
+            },
+            {
+                "node": {
+                    "hostnames": {
+                        "manage": [
+                            "node-2-01.openshift150.amsokol.me"
+                        ],
+                        "storage": [
+                            "192.168.150.201"
+                        ]
+                    },
+                    "zone": 2
+                },
+                "devices": [
+                    "/dev/vdc"
+                ]
+            },
+            {
+                "node": {
+                    "hostnames": {
+                        "manage": [
+                            "node-2-02.openshift150.amsokol.me"
+                        ],
+                        "storage": [
+                            "192.168.150.202"
+                        ]
+                    },
+                    "zone": 2
+                },
+                "devices": [
+                    "/dev/vdc"
+                ]
+            }
+        ]
+    }]
+}

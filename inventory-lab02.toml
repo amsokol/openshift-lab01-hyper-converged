@@ -1,0 +1,81 @@
+# Create an OSEv3 group that contains the masters and nodes groups
+[OSEv3:children]
+masters
+nodes
+etcd
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a
+# password. If using ssh key based auth, then the key should be managed by an
+# ssh agent.
+ansible_user=root
+
+# deployment type valid values are origin, online, atomic-enterprise, and openshift-enterprise
+deployment_type=origin
+
+# Specify the generic release of OpenShift to install. This is used mainly just during installation, after which we
+# rely on the version running on the first master. Works best for containerized installs where we can usually
+# use this to lookup the latest exact version of the container images, which is the tag actually used to configure
+# the cluster. For RPM installations we just verify the version detected in your configured repos matches this
+# release.
+openshift_release=v1.5
+openshift_image_tag=v1.5.0
+
+# Install the openshift examples
+openshift_install_examples=true
+
+containerized=true
+
+# Router selector (optional)
+# Router will only be created if nodes matching this label are present.
+# Default value: 'region=infra'
+openshift_router_selector='router=true'
+
+# Registry selector (optional)
+# Registry will only be created if nodes matching this label are present.
+# Default value: 'region=infra'
+openshift_registry_selector='registry=true'
+
+openshift_master_cluster_public_hostname=openshift150.amsokol.me
+
+# Redeploy master certificates
+# openshift_master_named_certificates=[{"certfile": "/root/openshift150.amsokol.me.crt", "keyfile": "/root/openshift150.amsokol.me.key", "names":["openshift150.amsokol.me"]}]
+# openshift_master_overwrite_named_certificates=true
+
+# default subdomain to use for exposed routes
+openshift_master_default_subdomain=app.openshift150.amsokol.me
+
+# enable htpasswd auth
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+# Enable cockpit
+osm_use_cockpit=true
+
+# Set cockpit plugins
+osm_cockpit_plugins=['cockpit-kubernetes']
+
+# default storage plugin dependencies to install, by default the ceph and
+# glusterfs plugin dependencies will be installed, if available.
+osn_storage_plugin_deps=['glusterfs']
+
+# Configure usage of openshift_clock role.
+openshift_clock_enabled=true
+
+# host group for masters
+[masters]
+master-01.openshift150.amsokol.me
+
+# host group for etcd, should run on a node that is not schedulable
+[etcd]
+master-01.openshift150.amsokol.me
+
+# host group for worker nodes, we list master node here so that
+# openshift-sdn gets installed. We mark the master node as not
+# schedulable.
+[nodes]
+master-01.openshift150.amsokol.me openshift_schedulable=false
+node-1-01.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1', 'router':'true', 'registry':'true'}"
+node-1-02.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1'}"
+node-2-01.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"
+node-2-02.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"
