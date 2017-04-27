@@ -174,7 +174,7 @@ openshift_master_overwrite_named_certificates=true
 # yum -y install heketi-templates heketi-client
 ```
 
-2. Copy all files from `/usr/share/heketi/templates` (on `installer`) to `/root/heketi/templates` (on `master-01`)
+2. Copy all files from `/usr/share/heketi/templates` (on `installer`) to `/root/heketi/templates` (on `master-01` where you need to create `/root/heketi/templates` before)
 
 3. For each `node-1-01`, `node-1-02`, `node-2-01`, `node-2-02` hosts add the following rules to `/etc/sysconfig/iptables` and reboot:
 ```
