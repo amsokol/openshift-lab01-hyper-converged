@@ -4,7 +4,6 @@ Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift 
 ## Materials are used to prepare this tutorial:
 - [OpenShift Origin Advanced Installation](https://docs.openshift.org/latest/install_config/install/advanced_install.html)
 - [Heketi, OpenShift Integration Project Aplo](https://github.com/heketi/heketi/wiki/OpenShift-Integration---Project-Aplo)
-- [DEPLOYING CONTAINERIZED RED HAT GLUSTER STORAGE WITH ATOMIC HOST](https://access.redhat.com/documentation/en-US/Red_Hat_Storage/3.1/html/Installation_Guide/chap-Deploying_Containerized_RHGS_with_Atomic_Host.html)
 
 ## Environment:
 | Host                              | OS             | IP              | Cores | RAM     | dev/vda (system) | dev/vdb (docker) | dev/vdc (gluster) |
