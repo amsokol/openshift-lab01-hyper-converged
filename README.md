@@ -1,4 +1,4 @@
-# OpenShift Origin v1.5.0 based hyper-converged infrastructure deployment tutorial
+# OpenShift Origin v1.5.0 based hyper-converged infrastructure deployment tutorial (deploying containerized Gluster storage with Atomic Host and OpenShift)
 Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin v1.5.0 + Gluster for CentOS Atomic Host
 
 ## Materials are used to prepare this tutorial:
