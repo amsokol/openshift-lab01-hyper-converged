@@ -1,4 +1,4 @@
-# OpenShift Origin v1.5.0 based hyper-converged infrustructure deployment tutorial
+# OpenShift Origin v1.5.0 based hyper-converged infrastructure deployment tutorial
 Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin v1.5.0 + Gluster for CentOS Atomic Host
 
 ## Materials are used to prepare this tutorial:
@@ -159,7 +159,7 @@ openshift_master_overwrite_named_certificates=true
 ```
 # ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "sed -i '$ a `htpasswd -n amsokol`' /etc/origin/master/htpasswd"
 ```
-3. [Optional] Give `amsokol` direct access to OpenShift's Docker regisrty:
+3. [Optional] Give `amsokol` direct access to OpenShift's Docker registry:
 ```
 # ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "oc adm policy add-role-to-user system:registry amsokol"
 
@@ -184,7 +184,7 @@ openshift_master_overwrite_named_certificates=true
 -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m multiport --dports 49152:49251 -j ACCEPT
 ```
 
-4. [Workarround due to issue [#656](https://github.com/heketi/heketi/issues/656) in Heketi] For each `node-1-01`, `node-1-02`, `node-2-01`, `node-2-02` run the following as root:
+4. [Workaround due to issue [#656](https://github.com/heketi/heketi/issues/656) in Heketi] For each `node-1-01`, `node-1-02`, `node-2-01`, `node-2-02` run the following as root:
 ```
 # systemctl stop rpcbind.socket
 
