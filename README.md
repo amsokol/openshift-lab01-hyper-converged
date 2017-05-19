@@ -104,7 +104,7 @@ EOF
 
 # git clone https://github.com/openshift/openshift-ansible
 
-# git clone https://github.com/amsokol/openshift-labs.git
+# git clone https://github.com/amsokol/openshift-lab01-hyper-converged.git
 
 ```
 
@@ -115,12 +115,12 @@ EOF
 ```
 # cd ~
 
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml nodes -a '/usr/bin/rpm-ostree status'
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml nodes -a '/usr/bin/rpm-ostree status'
 ```
 
 3. Start installation:
 ```
-# ansible-playbook -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml openshift-ansible/playbooks/byo/config.yml
+# ansible-playbook -i openshift-lab01-hyper-converged/inventory-lab02.toml openshift-ansible/playbooks/byo/config.yml
 ```
 
 ## [Optional, just FYI] Redeploy master certificates  (you need to have your own domain instead of amsokol.me):
@@ -138,7 +138,7 @@ openshift_master_overwrite_named_certificates=true
 
 5. Run installation: 
 ```
-# ansible-playbook -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml openshift-ansible/playbooks/byo/openshift-cluster/redeploy-master-certificates.yml
+# ansible-playbook -i openshift-lab01-hyper-converged/inventory-lab02.toml openshift-ansible/playbooks/byo/openshift-cluster/redeploy-master-certificates.yml
 ```
 
 ## Add administrator user account:
@@ -146,9 +146,9 @@ openshift_master_overwrite_named_certificates=true
 
 2. Add `admin` with password:
 ```
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "sed -i '$ a `htpasswd -n admin`' /etc/origin/master/htpasswd"
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml masters -a "sed -i '$ a `htpasswd -n admin`' /etc/origin/master/htpasswd"
 
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a 'oc adm policy add-cluster-role-to-user cluster-admin admin'
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml masters -a 'oc adm policy add-cluster-role-to-user cluster-admin admin'
 ```
 
 ## [Optional, just FYI] Add user developer account (with name `amsokol` as an example) 
@@ -156,13 +156,13 @@ openshift_master_overwrite_named_certificates=true
 
 2. Add `amsokol` with password 
 ```
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "sed -i '$ a `htpasswd -n amsokol`' /etc/origin/master/htpasswd"
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml masters -a "sed -i '$ a `htpasswd -n amsokol`' /etc/origin/master/htpasswd"
 ```
 3. [Optional] Give `amsokol` direct access to OpenShift's Docker registry:
 ```
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "oc adm policy add-role-to-user system:registry amsokol"
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml masters -a "oc adm policy add-role-to-user system:registry amsokol"
 
-# ansible -i openshift-labs/lab02-Hyperconvergent/inventory-lab02.toml masters -a "oc adm policy add-role-to-user system:image-builder amsokol"
+# ansible -i openshift-lab01-hyper-converged/inventory-lab02.toml masters -a "oc adm policy add-role-to-user system:image-builder amsokol"
 ```
 
 ## Install Gluster cluster to OpenShift
@@ -235,7 +235,7 @@ openshift_master_overwrite_named_certificates=true
 ```
 # export HEKETI_CLI_SERVER=http://deploy-heketi-aplo.app.openshift151.amsokol.me:80
 
-# heketi-cli topology load --json=openshift-labs/lab02-Hyperconvergent/gluster-topology.json
+# heketi-cli topology load --json=openshift-lab01-hyper-converged/gluster-topology.json
 
 # heketi-cli setup-openshift-heketi-storage
 ```
@@ -270,7 +270,7 @@ openshift_master_overwrite_named_certificates=true
 # heketi-cli topology info
 ```
 
-16. Copy `glusterfs-storageclass.yaml` from `/root/openshift-labs/lab02-Hyperconvergent` (on `installer`) to `/root` (on `master-01`)
+16. Copy `glusterfs-storageclass.yaml` from `/root/openshift-lab01-hyper-converged` (on `installer`) to `/root` (on `master-01`)
 
 17. SSH as root to `master-01` and run:
 ```
