@@ -20,7 +20,7 @@ deployment_type=origin
 # the cluster. For RPM installations we just verify the version detected in your configured repos matches this
 # release.
 openshift_release=v1.5
-openshift_image_tag=v1.5.0
+openshift_image_tag=v1.5.1
 
 # Install the openshift examples
 openshift_install_examples=true
@@ -37,14 +37,14 @@ openshift_router_selector='router=true'
 # Default value: 'region=infra'
 openshift_registry_selector='registry=true'
 
-openshift_master_cluster_public_hostname=openshift150.amsokol.me
+openshift_master_cluster_public_hostname=openshift151.amsokol.me
 
 # Redeploy master certificates
-# openshift_master_named_certificates=[{"certfile": "/root/openshift150.amsokol.me.crt", "keyfile": "/root/openshift150.amsokol.me.key", "names":["openshift150.amsokol.me"]}]
+# openshift_master_named_certificates=[{"certfile": "/root/openshift151.amsokol.me.crt", "keyfile": "/root/openshift151.amsokol.me.key", "names":["openshift151.amsokol.me"]}]
 # openshift_master_overwrite_named_certificates=true
 
 # default subdomain to use for exposed routes
-openshift_master_default_subdomain=app.openshift150.amsokol.me
+openshift_master_default_subdomain=app.openshift151.amsokol.me
 
 # enable htpasswd auth
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
@@ -64,18 +64,18 @@ openshift_clock_enabled=true
 
 # host group for masters
 [masters]
-master-01.openshift150.amsokol.me
+master-01.openshift151.amsokol.me
 
 # host group for etcd, should run on a node that is not schedulable
 [etcd]
-master-01.openshift150.amsokol.me
+master-01.openshift151.amsokol.me
 
 # host group for worker nodes, we list master node here so that
 # openshift-sdn gets installed. We mark the master node as not
 # schedulable.
 [nodes]
-master-01.openshift150.amsokol.me openshift_schedulable=false
-node-1-01.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1', 'router':'true', 'registry':'true'}"
-node-1-02.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1'}"
-node-2-01.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"
-node-2-02.openshift150.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"
+master-01.openshift151.amsokol.me openshift_schedulable=false
+node-1-01.openshift151.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1', 'router':'true', 'registry':'true'}"
+node-1-02.openshift151.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '1'}"
+node-2-01.openshift151.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"
+node-2-02.openshift151.amsokol.me openshift_node_labels="{'region': 'primary', 'zone': '2'}"

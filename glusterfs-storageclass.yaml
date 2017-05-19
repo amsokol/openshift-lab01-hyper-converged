@@ -4,7 +4,7 @@ metadata:
   name: slow
 provisioner: kubernetes.io/glusterfs
 parameters:
-  resturl: "http://heketi-aplo.app.openshift150.amsokol.me"
+  resturl: "http://heketi-aplo.app.openshift151.amsokol.me"
   restuser: ""
   secretName: ""
   secretNamespace: ""

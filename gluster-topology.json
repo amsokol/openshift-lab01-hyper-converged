@@ -4,10 +4,10 @@
                 "node": {
                     "hostnames": {
                         "manage": [
-                            "node-1-01.openshift150.amsokol.me"
+                            "node-1-01.openshift151.amsokol.me"
                         ],
                         "storage": [
-                            "192.168.150.101"
+                            "192.168.151.101"
                         ]
                     },
                     "zone": 1
@@ -20,10 +20,10 @@
                 "node": {
                     "hostnames": {
                         "manage": [
-                            "node-1-02.openshift150.amsokol.me"
+                            "node-1-02.openshift151.amsokol.me"
                         ],
                         "storage": [
-                            "192.168.150.102"
+                            "192.168.151.102"
                         ]
                     },
                     "zone": 1
@@ -36,10 +36,10 @@
                 "node": {
                     "hostnames": {
                         "manage": [
-                            "node-2-01.openshift150.amsokol.me"
+                            "node-2-01.openshift151.amsokol.me"
                         ],
                         "storage": [
-                            "192.168.150.201"
+                            "192.168.151.201"
                         ]
                     },
                     "zone": 2
@@ -52,10 +52,10 @@
                 "node": {
                     "hostnames": {
                         "manage": [
-                            "node-2-02.openshift150.amsokol.me"
+                            "node-2-02.openshift151.amsokol.me"
                         ],
                         "storage": [
-                            "192.168.150.202"
+                            "192.168.151.202"
                         ]
                     },
                     "zone": 2

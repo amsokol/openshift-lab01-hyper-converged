@@ -1,0 +1,20 @@
+<network ipv6='yes'>
+  <name>openshift-v1.5.1</name>
+  <uuid>f7dd7e55-187b-4aa9-ac5b-86fe50406e24</uuid>
+  <forward mode='route'/>
+  <bridge name='virbr2' stp='on' delay='0'/>
+  <mac address='52:54:00:82:1d:45'/>
+  <domain name='openshift151.amsokol.me'/>
+  <ip address='192.168.151.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.151.10' end='192.168.151.254'/>
+      <host mac='52:54:00:45:a8:9c' name='master-01.openshift151.amsokol.me' ip='192.168.151.11'/>
+      <host mac='52:54:00:34:d5:21' name='node-1-01.openshift151.amsokol.me' ip='192.168.151.101'/>
+      <host mac='52:54:00:78:78:1a' name='node-1-02.openshift151.amsokol.me' ip='192.168.151.102'/>
+      <host mac='52:54:00:0d:b7:14' name='node-2-01.openshift151.amsokol.me' ip='192.168.151.201'/>
+      <host mac='52:54:00:6e:be:55' name='node-2-02.openshift151.amsokol.me' ip='192.168.151.202'/>
+    </dhcp>
+  </ip>
+  <ip family='ipv6' address='fda5:efae:45e0:151::1' prefix='64'>
+  </ip>
+</network>

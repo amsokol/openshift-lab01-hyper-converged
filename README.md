@@ -1,5 +1,5 @@
-# OpenShift Origin v1.5.0 based hyper-converged infrastructure deployment tutorial (deploying containerized Gluster storage with Atomic Host and OpenShift)
-Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin v1.5.0 + Gluster for CentOS Atomic Host
+# OpenShift Origin v1.5.1 based hyper-converged infrastructure deployment tutorial (deploying containerized Gluster storage with Atomic Host and OpenShift)
+Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift Origin v1.5.1 + Gluster for CentOS Atomic Host
 
 ## Materials are used to prepare this tutorial:
 - [OpenShift Origin Advanced Installation](https://docs.openshift.org/latest/install_config/install/advanced_install.html)
@@ -8,23 +8,23 @@ Step by step tutorial how to deploy hyper-converged infrustructure by OpenShift 
 ## Environment:
 | Host                              | OS             | IP              | Cores | RAM     | dev/vda (system) | dev/vdb (docker) | dev/vdc (gluster) |
 |-----------------------------------|----------------|-----------------|-------|---------|------------------|------------------|-------------------|
-| installer.openshift150.amsokol.me | CentOS Minimal | 192.168.150.10  |   2   | 2048 MB |       64 GB      |         -        |         -         |
-| master-01.openshift150.amsokol.me | CentOS Atomic  | 192.168.150.11  |   2   | 4096 MB |       64 GB      |       128 GB     |         -         |
-| node-1-01.openshift150.amsokol.me | CentOS Atomic  | 192.168.150.101 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
-| node-1-02.openshift150.amsokol.me | CentOS Atomic  | 192.168.150.102 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
-| node-2-01.openshift150.amsokol.me | CentOS Atomic  | 192.168.150.201 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
-| node-2-02.openshift150.amsokol.me | CentOS Atomic  | 192.168.150.202 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
+| installer.openshift151.amsokol.me | CentOS Minimal | 192.168.151.10  |   2   | 2048 MB |       64 GB      |         -        |         -         |
+| master-01.openshift151.amsokol.me | CentOS Atomic  | 192.168.151.11  |   2   | 4096 MB |       64 GB      |       128 GB     |         -         |
+| node-1-01.openshift151.amsokol.me | CentOS Atomic  | 192.168.151.101 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
+| node-1-02.openshift151.amsokol.me | CentOS Atomic  | 192.168.151.102 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
+| node-2-01.openshift151.amsokol.me | CentOS Atomic  | 192.168.151.201 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
+| node-2-02.openshift151.amsokol.me | CentOS Atomic  | 192.168.151.202 |   2   | 4096 MB |       64 GB      |       128 GB     |       256 GB      |
 
-1. CentOS Atomic (tested for `CentOS-Atomic-Host-7.1703-Installer.iso`): [http://cloud.centos.org/centos/7/atomic/images/](http://cloud.centos.org/centos/7/atomic/images/)
+1. CentOS Atomic (tested for `CentOS-Atomic-Host-7.1704-Installer.iso`): [http://cloud.centos.org/centos/7/atomic/images/](http://cloud.centos.org/centos/7/atomic/images/)
 
-2. CentOS Minimal (tested for `CentOS-7-x86_64-Minimal-1702-01.iso`): [https://buildlogs.centos.org/rolling/7/isos/x86_64/](https://buildlogs.centos.org/rolling/7/isos/x86_64/)
+2. CentOS Minimal (tested for `CentOS-7-x86_64-Minimal-1704-01.iso`): [https://buildlogs.centos.org/rolling/7/isos/x86_64/](https://buildlogs.centos.org/rolling/7/isos/x86_64/)
 
 ## Configure DNS:
 1. Set DNS records from table above.
 
-2. Set `*.app.openshift150.amsokol.me` to `192.168.150.101`
+2. Set `*.app.openshift151.amsokol.me` to `192.168.151.101`
 
-3. Set `openshift150.amsokol.me` to `192.168.150.11`
+3. Set `openshift151.amsokol.me` to `192.168.151.11`
 
 ## Users:
 You need only root account on `installer` and `master-01`.
@@ -84,11 +84,11 @@ EOF
 ```
 5. Run (enter root password for for each server):
 ```
-# for host in master-01.openshift150.amsokol.me \
-    node-1-01.openshift150.amsokol.me \
-    node-1-02.openshift150.amsokol.me \
-    node-2-01.openshift150.amsokol.me \
-    node-2-02.openshift150.amsokol.me; \
+# for host in master-01.openshift151.amsokol.me \
+    node-1-01.openshift151.amsokol.me \
+    node-1-02.openshift151.amsokol.me \
+    node-2-01.openshift151.amsokol.me \
+    node-2-02.openshift151.amsokol.me; \
     do ssh-copy-id -i ~/.ssh/id_rsa.pub $host; \
     done
 ```
@@ -200,13 +200,13 @@ openshift_master_overwrite_named_certificates=true
 
 # oc create -f /root/heketi/templates
 
-# oc process glusterfs -p GLUSTERFS_NODE=node-1-01.openshift150.amsokol.me | oc create -f -
+# oc process glusterfs -p GLUSTERFS_NODE=node-1-01.openshift151.amsokol.me | oc create -f -
 
-# oc process glusterfs -p GLUSTERFS_NODE=node-1-02.openshift150.amsokol.me | oc create -f -
+# oc process glusterfs -p GLUSTERFS_NODE=node-1-02.openshift151.amsokol.me | oc create -f -
 
-# oc process glusterfs -p GLUSTERFS_NODE=node-2-01.openshift150.amsokol.me | oc create -f -
+# oc process glusterfs -p GLUSTERFS_NODE=node-2-01.openshift151.amsokol.me | oc create -f -
 
-# oc process glusterfs -p GLUSTERFS_NODE=node-2-02.openshift150.amsokol.me | oc create -f -
+# oc process glusterfs -p GLUSTERFS_NODE=node-2-02.openshift151.amsokol.me | oc create -f -
 ```
 
 6. Wait while all pods are created
@@ -215,7 +215,7 @@ openshift_master_overwrite_named_certificates=true
 ```
 # oc process deploy-heketi \
          -p HEKETI_KUBE_NAMESPACE=aplo \
-         -p HEKETI_KUBE_APIHOST=https://openshift150.amsokol.me:8443 \
+         -p HEKETI_KUBE_APIHOST=https://openshift151.amsokol.me:8443 \
          -p HEKETI_KUBE_INSECURE=y \
          -p HEKETI_KUBE_USER=admin \
          -p HEKETI_KUBE_PASSWORD=<admin_password> | oc create -f -
@@ -223,7 +223,7 @@ openshift_master_overwrite_named_certificates=true
 
 8. Wait while pod is created and test result:
 ```
-# curl http://deploy-heketi-aplo.app.openshift150.amsokol.me/hello
+# curl http://deploy-heketi-aplo.app.openshift151.amsokol.me/hello
 ```
 
 9. Run:
@@ -233,7 +233,7 @@ openshift_master_overwrite_named_certificates=true
 
 10. SSH as root to `installer` and run:
 ```
-# export HEKETI_CLI_SERVER=http://deploy-heketi-aplo.app.openshift150.amsokol.me:80
+# export HEKETI_CLI_SERVER=http://deploy-heketi-aplo.app.openshift151.amsokol.me:80
 
 # heketi-cli topology load --json=openshift-labs/lab02-Hyperconvergent/gluster-topology.json
 
@@ -252,7 +252,7 @@ openshift_master_overwrite_named_certificates=true
 ```
 # oc process heketi \
          -p HEKETI_KUBE_NAMESPACE=aplo \
-         -p HEKETI_KUBE_APIHOST=https://openshift150.amsokol.me:8443 \
+         -p HEKETI_KUBE_APIHOST=https://openshift151.amsokol.me:8443 \
          -p HEKETI_KUBE_INSECURE=y \
          -p HEKETI_KUBE_USER=admin \
          -p HEKETI_KUBE_PASSWORD=<admin_password> | oc create -f -
@@ -260,12 +260,12 @@ openshift_master_overwrite_named_certificates=true
 
 14. Wait while pod is created and test result:
 ```
-# curl http://heketi-aplo.app.openshift150.amsokol.me/hello
+# curl http://heketi-aplo.app.openshift151.amsokol.me/hello
 ```
 
 15. SSH as root to `installer` and run:
 ```
-# export HEKETI_CLI_SERVER=http://heketi-aplo.app.openshift150.amsokol.me:80
+# export HEKETI_CLI_SERVER=http://heketi-aplo.app.openshift151.amsokol.me:80
 
 # heketi-cli topology info
 ```
@@ -278,7 +278,7 @@ oc create -f glusterfs-storageclass.yaml
 ```
 
 ## Configure Gluster cluster storage for internal Docker registry
-1. Login as `admin` (account you created above) to `https://openshift.amsokol.me:8443`
+1. Login as `admin` (account you created above) to `https://openshift151.amsokol.me:8443`
 
 2. Open `default` project
 
