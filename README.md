@@ -43,28 +43,23 @@ All command should be run under `root`!
 ```
 # systemctl stop docker
 
-# rm -rf /var/lib/docker/*
+# atomic storage reset
 
-# cat <<EOF >> /etc/sysconfig/docker-storage-setup
-DEVS=/dev/vdb
-VG=docker-vg
-EOF
+# atomic storage modify --driver devicemapper --add-device /dev/sdb --vgroup vg-docker
 
-# docker-storage-setup
+# systemctl start docker
 ```
 
-4. Remove everything you added before from `/etc/sysconfig/docker-storage-setup`
-
-3. Run as root:
+4. Run as root:
 ```
 # cat <<EOF >> /etc/sysctl.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 
-# systemctl enable docker
-
 # reboot
+
+# docker info
 ```
 
 ## Configure `installer` host:
