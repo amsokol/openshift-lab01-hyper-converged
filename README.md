@@ -45,7 +45,7 @@ All command should be run under `root`!
 
 # atomic storage reset
 
-# atomic storage modify --driver devicemapper --add-device /dev/sdb --vgroup vg-docker
+# atomic storage modify --driver devicemapper --add-device /dev/vdb --vgroup vg-docker
 
 # systemctl start docker
 ```
