@@ -53,9 +53,13 @@ All command should be run under `root`!
 4. Run as root:
 ```
 # cat <<EOF >> /etc/sysctl.conf
+vm.overcommit_memory = 1
+vm.panic_on_oom = 0
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
+
+# swapoff -a
 
 # reboot
 
